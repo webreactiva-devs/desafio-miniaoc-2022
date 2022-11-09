@@ -2,6 +2,7 @@
 
 > Desafío de programación donde tú eliges tu propio nivel de dificultad.
 
+![image](https://user-images.githubusercontent.com/1122071/200904596-af45b067-6f26-42fc-9820-86e6c05d7fee.png)
 
 
 Bienvenid@s a un nuevo reto de programación de la comunidad malandriner.
@@ -68,7 +69,9 @@ Por ejemplo, si Federica participa sería: `/soluciones/federica` y dentro de es
 
 Cuando tengas la resolución completada en tu fork bastaría con hacer un PR al repositorio principal para incorporarla.
 
+|
 
+|
 
 ### Retos
 
@@ -76,7 +79,9 @@ Cuando tengas la resolución completada en tu fork bastaría con hacer un PR al 
 - Reto 2
 - Reto 3
 
+|
 
+|
 
 ### Leaderboard
 
@@ -95,7 +100,9 @@ Cuando tengas la resolución completada en tu fork bastaría con hacer un PR al 
 | x    | x        | 0      |
 | x    | x        | 0      |
 
+|
 
+|
 
 ### Notas finales
 
