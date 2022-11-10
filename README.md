@@ -54,7 +54,7 @@ Hay dos formas de hacerlo:
 
 **1. Incluir un enlace a la solución en una issue**
 
-En este mismo repositorio puedes [añadir una issue](#)(https://github.com/webreactiva-dev/desafio-miniaoc-2022/issues/new) indicando:
+En este mismo repositorio puedes [añadir una issue](https://github.com/webreactiva-devs/desafio-miniaoc-2022/issues/new) indicando:
 
 - El reto resuelto
 - Un enlace a la solución
@@ -75,9 +75,9 @@ Cuando tengas la resolución completada en tu fork bastaría con hacer un PR al 
 
 ### Retos
 
-- Reto 1 (disponible muy pronto)
-- Reto 2
-- Reto 3
+- [Reto 1](reto-1.md)
+- Reto 2 (muy pronto)
+- Reto 3 (muy pronto)
 
 |
 
