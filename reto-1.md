@@ -37,6 +37,8 @@ Una vez lo hayas descubierto podrás confirmar si la localización es correcta e
 
 Nota: Fíjate en los cuadrados en rojo para hacer bien tu petición.
 
+Nota 2: Evidentemente la solución no es "ROMA" :)
+
 
 ![desafio-miniaoc-reto-1](https://user-images.githubusercontent.com/1122071/201049172-89add7a4-9bc5-48cc-a4f4-845bee683969.png)
 
