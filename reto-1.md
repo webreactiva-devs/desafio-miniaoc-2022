@@ -45,7 +45,7 @@ Nota 2: Evidentemente la solución no es "ROMA" :)
 ## Sistema de puntos
 
 1. Un punto por la solución correcta.
-2. Dos puntos más si inlcuyes test unitarios en la solución.
+2. Dos puntos más si inlcuyes test unitarios en la solución. -> **Tres tests unitarios relacionados con el reto son necesarios**
 3. Tres puntos más si utilizas en la solución un lenguaje de programación desconocido para ti.
 
 
