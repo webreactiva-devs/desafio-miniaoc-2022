@@ -22,6 +22,13 @@ test('caesar cypher method with shift 3 must return 3-next characters', () => {
     expect(caesarCypher(input, shift)).toBe(expectedOutput)
 })
 
+test('caesar cypher method with spaces - must mantain them', () => {
+    const input = 'ABC ABC'
+    const shift = 3
+    const expectedOutput = 'DEF DEF'
+    expect(caesarCypher(input, shift)).toBe(expectedOutput)
+})
+
 test('caesar cypher method with shift 5 (Ned Stark sons) - find solution', () => {
     const input = 'NVI EPVI YZ BVUOZGPBVOSZ'
     const shift = 5
