@@ -7,3 +7,10 @@ test('caesar cypher method with shift 0 must return input value', () => {
     const expectedOutput = input
     expect(caesarCypher(input, shift)).toBe(expectedOutput)
 })
+
+test('caesar cypher method with shift 1 must return next characters', () => {
+    const input = 'ABC'
+    const shift = 1
+    const expectedOutput = 'BCD'
+    expect(caesarCypher(input, shift)).toBe(expectedOutput)
+})
