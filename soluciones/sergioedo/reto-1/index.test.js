@@ -29,9 +29,16 @@ test('caesar cypher method with spaces - must mantain them', () => {
     expect(caesarCypher(input, shift)).toBe(expectedOutput)
 })
 
+test('caesar cypher method with shift overflow last abecedary letter', () => {
+    const input = 'XYZ'
+    const shift = 1
+    const expectedOutput = 'YZA'
+    expect(caesarCypher(input, shift)).toBe(expectedOutput)
+})
+
 test('caesar cypher method with shift 5 (Ned Stark sons) - find solution', () => {
     const input = 'NVI EPVI YZ BVUOZGPBVOSZ'
     const shift = 5
-    const expectedOutput = ''
+    const expectedOutput = 'SAN JUAN DE GAZTELUGATXE'
     expect(caesarCypher(input, shift)).toBe(expectedOutput)
 })
