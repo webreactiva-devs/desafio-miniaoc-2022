@@ -76,7 +76,7 @@ Cuando tengas la resolución completada en tu fork bastaría con hacer un PR al 
 ### Retos
 
 - [Reto 1](reto-1.md)
-- Reto 2 (muy pronto)
+- [Reto 2](reto-2.md)
 - Reto 3 (muy pronto)
 
 |
