@@ -53,7 +53,7 @@ Salidas posibles: `{2,035}`, `{20,35}`, `{203,5}`, `{2,0.35}`, `{2,03.5}`, `{2.0
 
 Descartes: 
 - `{2,035}`, `{20,35}`, `{203,5}`, `{2,0.35}`, `{2,03.5}`, `{2.03,5}`, `{20.3,5}` por no tener  al menos un decimal una de las dos coordenadas (o las dos)
-- `{2,035}`, `{2,0.35}` por empezar por cero
+- `{2,035}`, `{2,0.35}`,`{2,03.5}` por empezar por cero
 
 En este caso solo hay un resultado válido: `{2.0,3.5}`
 
