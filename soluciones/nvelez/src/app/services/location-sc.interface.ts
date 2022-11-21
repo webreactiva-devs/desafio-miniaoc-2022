@@ -4,3 +4,8 @@ export interface LocationSC {
 	supercoco_is_here?: string;
 	next_challenge?: string;
 }
+
+export interface Coordinate {
+  lat: string,
+  long: string
+}

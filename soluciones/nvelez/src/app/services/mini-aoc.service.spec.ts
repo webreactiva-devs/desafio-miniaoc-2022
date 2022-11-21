@@ -6,6 +6,7 @@ import { MiniAOCService } from './mini-aoc.service';
 import { LocationSC } from './location-sc.interface';
 import { environment } from 'src/environments/environment.prod';
 import { locationOK, locationKO, solutionOK, solutionKO, locationCodeOK } from 'src/assets/mocks/reto1';
+import { coordinatesOK } from 'src/assets/mocks/reto2';
 
 describe('MiniAOCService', () => {
   
@@ -56,6 +57,30 @@ describe('MiniAOCService', () => {
       solution: solutionKO
     });
     req.flush(locationKO);
+  });
+
+  it('getCoordinates', () => {
+    const _locationCodeOK = '{3311014444}';
+    const coordinates = service.getCoordinates(_locationCodeOK);
+    expect(coordinates).toEqual(coordinatesOK);
+  });
+
+  it('getLocation$ OK return the location of supercoco Reto2', () => {
+    const _solutionOK = '{-33.110,144.44}';
+    const _locationOK: LocationSC = {
+      status: "¡No te puedo creer! ¡Has pillado a SuperCoco!",
+      message_to_telegram: "¡El segundo reto desbloqueado! #desafíoMiniAOC 🥳 https://media.tenor.com/X15e67QrANUAAAAC/the-office.gif",
+      supercoco_is_here: "https://donde-esta-supercoco.vercel.app/images/reto2-sfgdfw4.jpeg"
+    };
+    service.getLocation$(_solutionOK, '2').subscribe((resp: LocationSC) => {
+      expect(resp).toEqual(_locationOK);
+    });
+    const req = httpMock.expectOne(environment.API_REST_URL + '/reto/2');
+    expect(req.request.method).toBe('POST');
+    expect(req.request.body).toEqual({
+      solution: _solutionOK
+    });
+    req.flush(_locationOK);
   });
 
 });
