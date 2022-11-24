@@ -69,6 +69,8 @@ Por ejemplo, si Federica participa sería: `/soluciones/federica` y dentro de es
 
 Cuando tengas la resolución completada en tu fork bastaría con hacer un PR al repositorio principal para incorporarla.
 
+-> [Así se hace un fork y una PR (en castellano)](https://www.youtube.com/watch?v=h9J-2wK8FVQ)
+
 |
 
 |
@@ -76,8 +78,8 @@ Cuando tengas la resolución completada en tu fork bastaría con hacer un PR al 
 ### Retos
 
 - [Reto 1](reto-1.md)
-- Reto 2 (muy pronto)
-- Reto 3 (muy pronto)
+- [Reto 2](reto-2.md)
+- [Reto 3](reto-3.md)
 
 |
 
