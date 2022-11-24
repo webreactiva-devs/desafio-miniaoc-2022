@@ -55,6 +55,15 @@ const char2Grid = {
         [1, 0, 0, 0, 0, 0, 0],
         [1, 1, 1, 1, 1, 1, 1],
     ],
+    '2#': [
+        [0, 1, 1, 1, 1, 1, 0],
+        [0, 0, 0, 0, 0, 1, 0],
+        [0, 0, 0, 0, 1, 0, 0],
+        [0, 0, 0, 1, 0, 0, 0],
+        [0, 0, 1, 0, 0, 0, 0],
+        [0, 1, 0, 0, 0, 0, 0],
+        [0, 1, 1, 1, 1, 1, 0]
+    ],
     '3': [
         [1, 1, 1, 1, 1, 1, 1],
         [0, 0, 0, 0, 0, 0, 1],
@@ -121,7 +130,7 @@ const char2Grid = {
 }
 
 export const grid2Char = (grid) => {
-    return Object.keys(char2Grid).find(char => char2Grid[char].toString() === grid.toString())
+    return (Object.keys(char2Grid).find(char => char2Grid[char].toString() === grid.toString()) || '').replace('#', '')
 }
 
 const GRID_SIZE = 7
@@ -166,9 +175,19 @@ const checkSolutionFound = async (url) => {
     return false
 }
 
+const checkAntiHackersStep = async (url) => {
+    const data = await getCellDataByURL(url, 0, 0)
+    if (data?.status?.toString().includes('anti-hackers')) {
+        return true
+    }
+    return false
+}
+
 export const findLocation = async (API_ENDPOINT, value) => {
     const URL = API_ENDPOINT + value
     console.log(URL)
+    const antiHackersCheck = await checkAntiHackersStep(URL)
+    if (antiHackersCheck) return findLocation(URL, 'z')
     const found = await checkSolutionFound(URL)
     if (found) return value
     const nextChar = await findCharacter(URL)
