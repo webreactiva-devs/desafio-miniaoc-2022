@@ -18,13 +18,13 @@ test('Test grid conversion to character A', () => {
 
 test('Test grid conversion to character 1', () => {
     const input = [
-        [0, 0, 0, 0, 0, 0, 1],
-        [0, 0, 0, 0, 0, 0, 1],
-        [0, 0, 0, 0, 0, 0, 1],
-        [0, 0, 0, 0, 0, 0, 1],
-        [0, 0, 0, 0, 0, 0, 1],
-        [0, 0, 0, 0, 0, 0, 1],
-        [0, 0, 0, 0, 0, 0, 1],
+        [0, 0, 0, 1, 0, 0, 0],
+        [0, 0, 0, 1, 0, 0, 0],
+        [0, 0, 0, 1, 0, 0, 0],
+        [0, 0, 0, 1, 0, 0, 0],
+        [0, 0, 0, 1, 0, 0, 0],
+        [0, 0, 0, 1, 0, 0, 0],
+        [0, 0, 0, 1, 0, 0, 0],
     ]
     const expectedOutput = '1'
 
@@ -41,9 +41,17 @@ const API_ENDPOINT = 'https://donde-esta-supercoco.vercel.app/api/reto/'
 //     expect(result).toBe(expectedOutput)
 // }, 30000)
 
-test('Test find character from API with value 37', async () => {
-    const input = 37
-    const expectedOutput = 'P'
+// test('Test find character from API with value 37', async () => {
+//     const input = 37
+//     const expectedOutput = 'P'
+
+//     const result = await findCharacter(`${API_ENDPOINT}${input}`)
+//     expect(result).toBe(expectedOutput)
+// }, 30000)
+
+test('Test find character from API with value 37P', async () => {
+    const input = '37P'
+    const expectedOutput = '1'
 
     const result = await findCharacter(`${API_ENDPOINT}${input}`)
     expect(result).toBe(expectedOutput)
