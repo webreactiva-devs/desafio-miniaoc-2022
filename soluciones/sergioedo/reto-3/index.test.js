@@ -110,10 +110,18 @@ const API_ENDPOINT = 'https://donde-esta-supercoco.vercel.app/api/reto/'
 //     expect(result).toBe(expectedOutput)
 // }, 60000)
 
-test('Test find solution from API starting with value 3', async () => {
-    const input = '3'
-    const expectedOutput = ''
+test('Test find solution final step', async () => {
+    const input = '37P1Cz12P'
+    const expectedOutput = '37P1C12P3'
 
     const result = await findLocation(API_ENDPOINT, input)
     expect(result).toBe(expectedOutput)
 }, 300000)
+
+// test('Test find solution from API starting with value 3', async () => {
+//     const input = '3'
+//     const expectedOutput = '37P1C12P3'
+
+//     const result = await findLocation(API_ENDPOINT, input)
+//     expect(result).toBe(expectedOutput)
+// }, 300000)

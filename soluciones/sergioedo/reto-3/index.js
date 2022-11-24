@@ -163,7 +163,6 @@ export const findCharacter = async (API_ENDPOINT) => {
         }
         grid.push(gridRow)
     }
-    console.log(grid)
     return grid2Char(grid)
 }
 
@@ -185,11 +184,10 @@ const checkAntiHackersStep = async (url) => {
 
 export const findLocation = async (API_ENDPOINT, value) => {
     const URL = API_ENDPOINT + value
-    console.log(URL)
     const antiHackersCheck = await checkAntiHackersStep(URL)
-    if (antiHackersCheck) return findLocation(URL, 'z')
+    if (antiHackersCheck) return findLocation(API_ENDPOINT, value + 'z')
     const found = await checkSolutionFound(URL)
-    if (found) return value
+    if (found) return value.replace('z', '')
     const nextChar = await findCharacter(URL)
-    return findLocation(URL, nextChar)
+    return findLocation(API_ENDPOINT, value + nextChar)
 }
