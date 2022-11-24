@@ -1,5 +1,5 @@
 import { expect, test } from 'vitest'
-import { grid2Char } from 'index'
+import { grid2Char, findCharacter } from 'index'
 
 test('Test grid conversion to character A', () => {
     const input = [
@@ -31,10 +31,12 @@ test('Test grid conversion to character 1', () => {
     expect(grid2Char(input)).toBe(expectedOutput)
 })
 
-test('Test find character from API with value 3', () => {
-    const API_ENDPOINT = 'https://donde-esta-supercoco.vercel.app/api/reto/'
-    const input = 3
-    const expectedOutput = ''
+const API_ENDPOINT = 'https://donde-esta-supercoco.vercel.app/api/reto/'
 
-    expect(findCharacter(API_ENDPOINT, input)).toBe(expectedOutput)
-})
+test('Test find character from API with value 3', async () => {
+    const input = 3
+    const expectedOutput = '7'
+
+    const result = await findCharacter(`${API_ENDPOINT}${input}`)
+    expect(result).toBe(expectedOutput)
+}, 30000)

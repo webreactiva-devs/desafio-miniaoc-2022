@@ -1,3 +1,5 @@
+import fetch from 'node-fetch'
+
 const char2Grid = {
     'A': [
         [1, 1, 1, 1, 1, 1, 1],
@@ -120,4 +122,33 @@ const char2Grid = {
 
 export const grid2Char = (grid) => {
     return Object.keys(char2Grid).find(char => char2Grid[char].toString() === grid.toString())
+}
+
+const GRID_SIZE = 7
+
+const checkCellByURL = async (url, row, col) => {
+    const response = await fetch(url, {
+        method: 'POST',
+        body: JSON.stringify({
+            "checkpoint": `{${row},${col}}`
+        })
+    });
+    const data = await response.json();
+    if (data && data.status) {
+        return true
+    }
+    return false
+}
+
+export const findCharacter = async (API_ENDPOINT) => {
+    const grid = []
+    for (let row = GRID_SIZE - 1; row >= 0; row--) {
+        const gridRow = []
+        for (let col = 0; col < GRID_SIZE; col++) {
+            const cell = await checkCellByURL(API_ENDPOINT, row, col)
+            gridRow.push(cell ? 1 : 0)
+        }
+        grid.push(gridRow)
+    }
+    return grid2Char(grid)
 }
