@@ -78,37 +78,37 @@ test('Test alternative grid conversion to character 2', () => {
 
 const API_ENDPOINT = 'https://donde-esta-supercoco.vercel.app/api/reto/'
 
-// test('Test find character from API with value 3', async () => {
-//     const input = '3'
-//     const expectedOutput = '7'
+test('Test find character from API with value 3', async () => {
+    const input = '3'
+    const expectedOutput = '7'
 
-//     const result = await findCharacter(`${API_ENDPOINT}${input}`)
-//     expect(result).toBe(expectedOutput)
-// }, 30000)
+    const result = await findCharacter(`${API_ENDPOINT}${input}`)
+    expect(result).toBe(expectedOutput)
+}, 30000)
 
-// test('Test find character from API with value 37', async () => {
-//     const input = '37'
-//     const expectedOutput = 'P'
+test('Test find character from API with value 37', async () => {
+    const input = '37'
+    const expectedOutput = 'P'
 
-//     const result = await findCharacter(`${API_ENDPOINT}${input}`)
-//     expect(result).toBe(expectedOutput)
-// }, 30000)
+    const result = await findCharacter(`${API_ENDPOINT}${input}`)
+    expect(result).toBe(expectedOutput)
+}, 30000)
 
-// test('Test find character from API with value 37P', async () => {
-//     const input = '37P'
-//     const expectedOutput = '1'
+test('Test find character from API with value 37P', async () => {
+    const input = '37P'
+    const expectedOutput = '1'
 
-//     const result = await findCharacter(`${API_ENDPOINT}${input}`)
-//     expect(result).toBe(expectedOutput)
-// }, 30000)
+    const result = await findCharacter(`${API_ENDPOINT}${input}`)
+    expect(result).toBe(expectedOutput)
+}, 30000)
 
-// test('Test find character from API with value 37P1', async () => {
-//     const input = '37P1'
-//     const expectedOutput = 'C'
+test('Test find character from API with value 37P1', async () => {
+    const input = '37P1'
+    const expectedOutput = 'C'
 
-//     const result = await findCharacter(`${API_ENDPOINT}${input}`)
-//     expect(result).toBe(expectedOutput)
-// }, 60000)
+    const result = await findCharacter(`${API_ENDPOINT}${input}`)
+    expect(result).toBe(expectedOutput)
+}, 60000)
 
 test('Test find solution final step', async () => {
     const input = '37P1Cz12P'
@@ -118,10 +118,10 @@ test('Test find solution final step', async () => {
     expect(result).toBe(expectedOutput)
 }, 300000)
 
-// test('Test find solution from API starting with value 3', async () => {
-//     const input = '3'
-//     const expectedOutput = '37P1C12P3'
+test('Test find solution from API starting with value 3', async () => {
+    const input = '3'
+    const expectedOutput = '37P1C12P3'
 
-//     const result = await findLocation(API_ENDPOINT, input)
-//     expect(result).toBe(expectedOutput)
-// }, 300000)
+    const result = await findLocation(API_ENDPOINT, input)
+    expect(result).toBe(expectedOutput)
+}, 300000)
