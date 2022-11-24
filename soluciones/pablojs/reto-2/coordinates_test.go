@@ -34,10 +34,12 @@ var isValidLatitude_BulkData = []struct {
 	expected bool
 }{
 	{"23.54", true},
-	{"119.20", true},
-	{"215.14", true},
+	{"86.1", true},
+	{"119.20", false},
+	{"215.14", false},
 	{"017.56", false},
 	{"25.", false},
+	{"331101.44", false},
 }
 
 func TestIsValidLatitude(t *testing.T) {

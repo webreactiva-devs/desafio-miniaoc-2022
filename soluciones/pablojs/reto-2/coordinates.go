@@ -36,7 +36,7 @@ func isValidLatitude(lat string) bool {
 		return false
 	}
 
-	intPart, err := strconv.Atoi(latitude.decimalPart)
+	intPart, err := strconv.Atoi(latitude.integerPart)
 
 	if intPart > 0 && intPart <= 90 && err == nil {
 		return true
@@ -59,7 +59,7 @@ func isValidLongitude(lng string) bool {
 		return false
 	}
 
-	intPart, err := strconv.Atoi(longitude.decimalPart)
+	intPart, err := strconv.Atoi(longitude.integerPart)
 
 	if intPart > 0 && intPart <= 180 && err == nil {
 		return true
