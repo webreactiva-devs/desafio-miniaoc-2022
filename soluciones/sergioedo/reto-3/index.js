@@ -14,7 +14,7 @@ const char2Grid = {
         [1, 1, 1, 1, 1, 1, 1],
         [1, 0, 0, 0, 0, 0, 1],
         [1, 0, 0, 0, 0, 0, 1],
-        [1, 1, 1, 1, 1, 1, 1],
+        [0, 1, 1, 1, 1, 1, 1],
         [1, 0, 0, 0, 0, 0, 0],
         [1, 0, 0, 0, 0, 0, 0],
         [1, 0, 0, 0, 0, 0, 0],
@@ -126,14 +126,18 @@ export const grid2Char = (grid) => {
 
 const GRID_SIZE = 7
 
-const checkCellByURL = async (url, row, col) => {
+const getCellDataByURL = async (url, row, col) => {
     const response = await fetch(url, {
         method: 'POST',
         body: JSON.stringify({
-            "checkpoint": `{${row},${col}}`
+            "checkpoint": `{${col},${GRID_SIZE - row - 1}}`
         })
     });
-    const data = await response.json();
+    return response.json();
+}
+
+const checkCellByURL = async (url, row, col) => {
+    const data = await getCellDataByURL(url, row, col)
     if (data && data.status) {
         return true
     }
@@ -142,7 +146,7 @@ const checkCellByURL = async (url, row, col) => {
 
 export const findCharacter = async (API_ENDPOINT) => {
     const grid = []
-    for (let row = GRID_SIZE - 1; row >= 0; row--) {
+    for (let row = 0; row < GRID_SIZE; row++) {
         const gridRow = []
         for (let col = 0; col < GRID_SIZE; col++) {
             const cell = await checkCellByURL(API_ENDPOINT, row, col)
@@ -150,5 +154,23 @@ export const findCharacter = async (API_ENDPOINT) => {
         }
         grid.push(gridRow)
     }
+    console.log(grid)
     return grid2Char(grid)
+}
+
+const checkSolutionFound = async (url) => {
+    const data = await getCellDataByURL(url, 0, 0)
+    if (data && data.success) {
+        return true
+    }
+    return false
+}
+
+export const findLocation = async (API_ENDPOINT, value) => {
+    const URL = API_ENDPOINT + value
+    console.log(URL)
+    const found = await checkSolutionFound(URL)
+    if (found) return value
+    const nextChar = await findCharacter(URL)
+    return findLocation(URL, nextChar)
 }

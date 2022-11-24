@@ -1,5 +1,5 @@
 import { expect, test } from 'vitest'
-import { grid2Char, findCharacter } from 'index'
+import { grid2Char, findCharacter, findLocation } from 'index'
 
 test('Test grid conversion to character A', () => {
     const input = [
@@ -33,10 +33,26 @@ test('Test grid conversion to character 1', () => {
 
 const API_ENDPOINT = 'https://donde-esta-supercoco.vercel.app/api/reto/'
 
-test('Test find character from API with value 3', async () => {
-    const input = 3
-    const expectedOutput = '7'
+// test('Test find character from API with value 3', async () => {
+//     const input = 3
+//     const expectedOutput = '7'
+
+//     const result = await findCharacter(`${API_ENDPOINT}${input}`)
+//     expect(result).toBe(expectedOutput)
+// }, 30000)
+
+test('Test find character from API with value 37', async () => {
+    const input = 37
+    const expectedOutput = 'P'
 
     const result = await findCharacter(`${API_ENDPOINT}${input}`)
     expect(result).toBe(expectedOutput)
 }, 30000)
+
+// test('Test find solution from API starting with value 3', async () => {
+//     const input = 3
+//     const expectedOutput = ''
+
+//     const result = await findLocation(API_ENDPOINT, input)
+//     expect(result).toBe(expectedOutput)
+// }, 300000)
