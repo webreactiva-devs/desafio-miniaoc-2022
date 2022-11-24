@@ -30,3 +30,11 @@ test('Test grid conversion to character 1', () => {
 
     expect(grid2Char(input)).toBe(expectedOutput)
 })
+
+test('Test find character from API with value 3', () => {
+    const API_ENDPOINT = 'https://donde-esta-supercoco.vercel.app/api/reto/'
+    const input = 3
+    const expectedOutput = ''
+
+    expect(findCharacter(API_ENDPOINT, input)).toBe(expectedOutput)
+})
