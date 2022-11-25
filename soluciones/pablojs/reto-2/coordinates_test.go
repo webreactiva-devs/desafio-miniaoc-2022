@@ -50,3 +50,26 @@ func TestIsValidLatitude(t *testing.T) {
 		}
 	}
 }
+
+var isValidLongitude_BulkData = []struct {
+	coord    string
+	expected bool
+}{
+	{"12.386", true},
+	{"1.18", true},
+	{"105.26", true},
+	{"235.58", false},
+	{"065.21", false},
+	{"98.", false},
+	{"331101.44", false},
+	{"0.15", false},
+}
+
+func TestIsValidLongitude(t *testing.T) {
+	for _, tt := range isValidLongitude_BulkData {
+		got := isValidLongitude(tt.coord)
+		if got != tt.expected {
+			t.Errorf("Data: %v -> Expected: %v, got %v", tt.coord, tt.expected, got)
+		}
+	}
+}
