@@ -19,7 +19,5 @@ export const solutionOK = '{-33.110,144.44}';
 
 export const locationCodeKO = '{2035}';
 export const coordinatesKO = [{ "lat": "2.0", "long": "3.5" }, { "lat": "-2.0", "long": "-3.5" }, { "lat": "-2.0", "long": "3.5" }, { "lat": "2.0", "long": "-3.5" }];
-export const coordinateKO = [
-  { lat: '-2.0', long: '3.5' }
-];
+export const coordinateKO = { lat: '-2.0', long: '3.5' };
 export const solutionKO = '';

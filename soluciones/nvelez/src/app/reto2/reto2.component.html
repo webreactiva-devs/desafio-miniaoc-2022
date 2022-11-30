@@ -13,26 +13,37 @@
 		</button>
   </form>
 
-	<div class="spinner-border text-primary m-4"
-	     role="status"
-			 *ngIf="loader; else result">
-		<span class="visually-hidden">Loading...</span>
-	</div>
+	<ng-container *ngIf="data$ | async as data">
 
-  <ng-template #result>
-		<div class="container mt-3">
-			<div *ngIf="data?.status"
-					 class="alert"
-					 [ngClass]="location ? 'alert-primary' : 'alert-danger'">
-				{{ data.status }}
-			</div>
-			<ng-container *ngIf="location">
-				<h4>Supercoco ahora está en <strong>{{ location }}</strong></h4>
-				<p>{{ data.message_to_telegram }}</p>
-				<img class="img-sc" [src]="data.supercoco_is_here" alt="supercoco_is_here">
-				<p>{{ data.next_challenge }}</p>
-			</ng-container>
+		<div class="spinner-border text-primary m-4"
+				 role="status"
+				 *ngIf="loader; else result">
+			<span class="visually-hidden">Loading...</span>
 		</div>
-	</ng-template>
+
+		<ng-template #result>
+			<div class="container mt-3">
+				<div *ngIf="location$ | async as location; else error"
+						 class="alert"
+						 [ngClass]="'alert-primary'">
+					{{ data.status }}
+				</div>
+				<ng-template #error>
+					<div *ngIf="error$ | async as error"
+							 class="alert"
+							 [ngClass]="'alert-danger'">
+						{{ error.status }}
+					</div>
+				</ng-template>
+				<ng-container *ngIf="location$ | async as location">
+					<h4>Supercoco ahora está en <strong>{{ location.location }}</strong></h4>
+					<p>{{ location.message_to_telegram }}</p>
+					<img class="img-sc" [src]="location.supercoco_is_here" alt="supercoco_is_here">
+					<p>{{ location.next_challenge }}</p>
+				</ng-container>
+			</div>
+		</ng-template>
+
+	</ng-container>
 
 </div>

@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { environment } from 'src/environments/environment.prod';
 import { Coordinate, LocationSC } from './location-sc.interface';
 
@@ -24,6 +24,14 @@ export class MiniAOCService {
     return this.http.post(`${ environment.API_REST_URL }/reto/${reto}`, { solution });
   }
 
+  getCheckPoint$(checkpoint: string, nextCoordinate: string): Observable<LocationSC> {
+    return this.http.post(`${ environment.API_REST_URL }/reto/${nextCoordinate}`, { checkpoint });
+  }
+
+  getGift$(coordinates: string, name: string): Observable<LocationSC> {
+    return this.http.post(`${ environment.API_REST_URL }/reto/${coordinates}`, { name });
+  }
+
   decodeLocation(code: string): string {
     return code.split('').map((char) => {
       const charCode = char.charCodeAt(0);
@@ -34,7 +42,7 @@ export class MiniAOCService {
     }).join('');
   }
 
-  getCoordinates(signal: string): Coordinate[] {
+  getCoordinates(signal: string): Observable<Coordinate> {
     this._coordinates = [];
     let _signal = signal.replace(/[{}]/g, '');
     for (let index = 2; index < _signal.length; index++) {
@@ -44,7 +52,7 @@ export class MiniAOCService {
           signalLong[0] === '0' || signalLong.length === 1) continue;
       this.getAllLat(signalLat, signalLong);
     }
-    return this._coordinates;
+    return of(...this._coordinates);
   }
 
   getAllLat(signalLat: string, signalLong: string) {

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormGroup, Validators, FormControl, FormBuilder } from '@angular/forms';
+import { of, tap, mergeMap, Observable } from 'rxjs';
 import { Coordinate, LocationSC } from '../services/location-sc.interface';
 import { MiniAOCService } from '../services/mini-aoc.service';
 
@@ -11,9 +12,10 @@ import { MiniAOCService } from '../services/mini-aoc.service';
 export class Reto2Component {
 
   public loader = false;
-  public data: LocationSC = {};
-  public location: string = '';
-  public coordinates: Coordinate[] = [];
+  public data$!: Observable<LocationSC>;
+  public location$!: Observable<LocationSC> | null;
+  public error$!: Observable<LocationSC> | null;
+  public coordinates$!: Observable<Coordinate>;
 
   public formLocation: FormGroup = this.fb.group({
     locationSignal: ['', [Validators.required, Validators.pattern('[0-9{}]*')]]
@@ -29,29 +31,33 @@ export class Reto2Component {
   ) { }
 
   getLocation(signal: string): void {
-    
-    this.data = {};
-    this.location = '';
 
-    this.coordinates = this.miniAOCService.getCoordinates(signal);
+    this.loader = true;
+    this.error$ = null;
+    this.location$ = null;
+    this.coordinates$ = this.miniAOCService.getCoordinates(signal);
 
-    for (const coordinate of this.coordinates) {
-      
-      const lat = coordinate.lat;
-      const long = coordinate.long;
-
-      this.miniAOCService.getLocation$(`{${lat},${long}}`, '2').subscribe((data: LocationSC) => {
-        if (data.supercoco_is_here) {
-          this.data = data;
-          this.location = `{${lat},${long}}`;
-          this.locationSignal.setValue('');
-        } else if (!this.data.status) {
-          this.data = data;
+    this.data$ = this.coordinates$.pipe(
+      mergeMap((coordinate) => {
+        const lat = coordinate.lat;
+        const long = coordinate.long;
+        return this.miniAOCService.getLocation$(`{${lat},${long}}`, '2');
+      })
+    ).pipe(
+      tap({
+        next: (data: LocationSC) => {
+          if (data.supercoco_is_here !== undefined) {
+            this.location$ = of(data);
+          } else {
+            this.error$ = of(data);
+          }
+        },
+        complete: () => {
+          this.loader = false;
         }
-      });
-
-    }
-
+      })
+    )
+    
   }
 
 }
