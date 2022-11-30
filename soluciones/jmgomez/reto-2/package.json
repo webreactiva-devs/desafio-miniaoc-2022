@@ -1,0 +1,22 @@
+{
+  "name": "jmgomez",
+  "version": "1.0.0",
+  "description": "Primer reto del miniAoc 2022",
+  "main": "index.js",
+  "type": "module",
+  "author": "José Manuel Gómez Pérez",
+  "license": "MIT",
+  "private": false,
+  "devDependencies": {
+    "eslint": "^8.27.0",
+    "nodemon": "^2.0.20",
+    "vitest": "^0.25.2"
+  },
+  "scripts": {
+    "dev": "vitest watch",
+    "test": "vitest"
+  },
+  "dependencies": {
+    "node-fetch": "^3.3.0"
+  }
+}
