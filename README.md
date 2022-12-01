@@ -87,18 +87,20 @@ Cuando tengas la resolución completada en tu fork bastaría con hacer un PR al 
 
 ### Leaderboard
 
-eleazan	6
-jmgomezdev	11
-migbara	3
-niltsiar	9
-nvelezayuso	7
-PabloJS	16
-phtnary	4
-sergioedo	9
-sergiopalbau 	10
-skcode7	6
-terepebernal	2
-yurigo	11
+| nick | points |
+| ---- | ------ |
+| eleazan | 6 |
+| jmgomezdev	 | 11 |
+| migbara | 	3 |
+| niltsiar | 	9 |
+| nvelezayuso | 	7 |
+| PabloJS | 	16 |
+| phtnary | 	4 |
+| sergioedo | 	9 |
+| sergiopalbau |  	10 |
+| skcode7 | 	6 |
+| terepebernal | 	2 |
+| yurigo | 	11 |
 
 
 |
