@@ -49,6 +49,7 @@ suspend fun findValidUrl(baseUrl: String, testChars: List<Char>, client: HttpCli
 
     val antiHackerChar = checkAntiHacker(baseUrl, client)
     return if (null != antiHackerChar) {
+        println("😈 Anti hacker char recognized: $antiHackerChar")
         findValidUrl(baseUrl + antiHackerChar, testChars, client)
     } else {
         baseUrl
