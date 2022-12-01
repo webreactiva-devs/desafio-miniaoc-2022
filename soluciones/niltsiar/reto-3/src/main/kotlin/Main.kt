@@ -63,16 +63,24 @@ suspend fun checkAntiHacker(baseUrl: String, client: HttpClient): Char? {
 
     return try {
         val parsedResponse = response.body<Response>()
-        val startingDelimiter = "la ruta que ya tienes una "
-        val endingDelimiter = " y sigue jugando"
-        val startIndex = parsedResponse.status.indexOf(startingDelimiter) + startingDelimiter.length
-        val endIndex = parsedResponse.status.indexOf(endingDelimiter)
+        val antiHacker = findAntiHackerChar(parsedResponse)
 
-        val antiHacker = parsedResponse.status.substring(startIndex, endIndex)
-
-        return parseAntiHackerChar(antiHacker)
+        return antiHacker?.let { parseAntiHackerChar(it) }
     } catch (_: Exception) {
         null
+    }
+}
+
+fun findAntiHackerChar(response: Response): String? {
+    val startingDelimiter = "la ruta que ya tienes una "
+    val endingDelimiter = " y sigue jugando"
+    val startIndex = response.status.indexOf(startingDelimiter) + startingDelimiter.length
+    val endIndex = response.status.indexOf(endingDelimiter)
+
+    return when {
+        startIndex == -1 || endIndex == -1 -> null // if delimiters are not found
+        startIndex > endIndex -> null // if startingDelimiter found after endingDelimiter
+        else -> response.status.substring(startIndex, endIndex)
     }
 }
 
@@ -131,7 +139,7 @@ fun createHttpClient(): HttpClient {
             level = LogLevel.BODY
             logger = object : Logger {
                 override fun log(message: String) {
-                    //println(message)
+                    println(message)
                 }
             }
         }
