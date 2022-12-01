@@ -8,6 +8,7 @@ import io.ktor.client.request.*
 import io.ktor.client.statement.*
 import io.ktor.http.*
 import io.ktor.serialization.kotlinx.json.*
+import kotlin.math.abs
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.async
 import kotlinx.coroutines.awaitAll
@@ -91,11 +92,7 @@ fun generateCoordinates(input: String): List<Coordinate> {
         }
         // filter invalid latitudes
         .filter { coordinate ->
-            coordinate.latitude.toDouble() < 90.0
-        }
-        // filter invalid longitudes
-        .filter { coordinate ->
-            coordinate.longitude.toDouble() < 180.0
+            coordinate.hasValidComponents()
         }
         .fold(emptyList()) { acc, coordinate ->
             acc + coordinate.generateNegativeCombinations()
@@ -127,6 +124,10 @@ fun Coordinate.generateNegativeCombinations(): List<Coordinate> {
         Coordinate(latitude, "-$longitude"),
         Coordinate("-$latitude", "-$longitude")
     )
+}
+
+fun Coordinate.hasValidComponents(): Boolean {
+    return abs(latitude.toDouble()) <= 90.0 && abs(longitude.toDouble()) <= 180.0
 }
 
 
