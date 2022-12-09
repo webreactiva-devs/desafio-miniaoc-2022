@@ -1,0 +1,58 @@
+<div class="container mt-3">
+
+  <h1 class="mb-2">Reto 3: Endiablado</h1>
+
+  <ng-container *ngIf="data$ | async as location; else form">
+    <div class="success mt-3">
+      <p>{{ location.message_to_telegram! | removeLink }}</p>
+      <p cla><a [href]="location.where_is_supercoco! | link">Supercoco está aquí</a></p>
+      <img class="img-sc" [src]="location.algo_para_ti" alt="gift">
+    </div>
+  </ng-container>
+
+  <ng-template #form>
+    <form [formGroup]="formLocation" id="formLocation">
+      <div *ngIf="!messageSuccess">
+        <label class="form-label">API conexión GPS de SuperCoco - La primera es un "3"</label>
+        <input type="text"
+               class="form-control"
+               formControlName="locationSignal"  
+               placeholder="Introduce el siguiente caracter...">
+        <button class="btn btn-primary mt-2"
+                [disabled]="formLocation.invalid"
+                (click)="getLocation(locationSignal.value)">
+          ¿Obtener siguiente caracter?
+        </button>
+      </div>
+      <div *ngIf="messageSuccess">
+        <div class="alert alert-primary mt-3">
+          {{ messageSuccess }}
+        </div>
+        <input type="text"
+               class="form-control"
+               formControlName="name"  
+               placeholder="Introduce tu nombre...">
+        <button class="btn btn-primary mt-2"
+                [disabled]="!name.value"
+                (click)="getGift()">
+          ¿Obtener regalo?
+        </button>
+      </div>
+    </form>
+  </ng-template>
+
+</div>
+
+<div *ngIf="antiHackersMessage" class="alert alert-danger mt-3">
+  {{ antiHackersMessage }}
+</div>
+
+<div class="container" *ngIf="!messageSuccess">
+	<div class="row" *ngFor="let y of coordinateY">
+		<div class="col col-md-1 coordinate"
+		     *ngFor="let x of coordinateX"
+				 [id]="'{' + x + ',' + y + '}'">
+			<p>{{ x + '' + y }}</p>
+		</div>
+	</div>
+</div>

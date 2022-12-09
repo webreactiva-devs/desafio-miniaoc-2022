@@ -1,0 +1,49 @@
+<div class="container mt-3">
+  <h1 class="mb-2">Reto 2: Coordenadas ermitañas</h1>
+  <form [formGroup]="formLocation" id="formLocation">
+    <label class="form-label">Coordenadas ermitañas</label>
+    <input type="text"
+           class="form-control"
+           formControlName="locationSignal"  
+           placeholder="Introduce las coordenadas ermitañas...">
+    <button class="btn btn-primary mt-2"
+            [disabled]="formLocation.invalid"
+            (click)="getLocation(locationSignal.value)">
+			¿Dónde está Supercoco?
+		</button>
+  </form>
+
+	<ng-container *ngIf="data$ | async as data">
+
+		<div class="spinner-border text-primary m-4"
+				 role="status"
+				 *ngIf="loader; else result">
+			<span class="visually-hidden">Loading...</span>
+		</div>
+
+		<ng-template #result>
+			<div class="container mt-3">
+				<div *ngIf="location$ | async as location; else error"
+						 class="alert"
+						 [ngClass]="'alert-primary'">
+					{{ data.status }}
+				</div>
+				<ng-template #error>
+					<div *ngIf="error$ | async as error"
+							 class="alert"
+							 [ngClass]="'alert-danger'">
+						{{ error.status }}
+					</div>
+				</ng-template>
+				<ng-container *ngIf="location$ | async as location">
+					<h4>Supercoco ahora está en <strong>{{ location.location }}</strong></h4>
+					<p>{{ location.message_to_telegram }}</p>
+					<img class="img-sc" [src]="location.supercoco_is_here" alt="supercoco_is_here">
+					<p>{{ location.next_challenge }}</p>
+				</ng-container>
+			</div>
+		</ng-template>
+
+	</ng-container>
+
+</div>
